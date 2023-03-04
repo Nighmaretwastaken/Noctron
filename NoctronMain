@@ -1,0 +1,130 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local INFO = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextLabel_2 = Instance.new("TextLabel")
+local UIGradient = Instance.new("UIGradient")
+local UICorner = Instance.new("UICorner")
+local ImageLabel = Instance.new("ImageLabel")
+local UICorner_2 = Instance.new("UICorner")
+local UIGradient_2 = Instance.new("UIGradient")
+local UICorner_3 = Instance.new("UICorner")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+Frame.Position = UDim2.new(0.113180228, 0, 0.0729943216, 0)
+Frame.Size = UDim2.new(0.593721986, 0, 0.85117054, 0)
+
+INFO.Name = "INFO"
+INFO.Parent = Frame
+INFO.BackgroundColor3 = Color3.fromRGB(36, 36, 36)
+INFO.Position = UDim2.new(-2.22658455e-05, 0, -0.000413636095, 0)
+INFO.Size = UDim2.new(0.270392746, 0, 1.00000012, 0)
+
+TextLabel.Parent = INFO
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(27, 42, 53)
+TextLabel.Position = UDim2.new(0.0502793305, 0, 0.846758306, 0)
+TextLabel.Size = UDim2.new(0.905027926, 0, 0.0844793692, 0)
+TextLabel.Font = Enum.Font.Merriweather
+TextLabel.Text = "NOCTRON"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+TextLabel_2.Parent = INFO
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+TextLabel_2.Position = UDim2.new(-0.0614525117, 0, 0.931237698, 0)
+TextLabel_2.Size = UDim2.new(0.614525139, 0, 0.0412573665, 0)
+TextLabel_2.Font = Enum.Font.Merriweather
+TextLabel_2.Text = "Library"
+TextLabel_2.TextColor3 = Color3.fromRGB(129, 129, 129)
+TextLabel_2.TextScaled = true
+TextLabel_2.TextSize = 14.000
+TextLabel_2.TextWrapped = true
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(191, 42, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 0, 0))}
+UIGradient.Rotation = 40
+UIGradient.Parent = INFO
+
+UICorner.Parent = INFO
+
+ImageLabel.Parent = INFO
+ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageLabel.Position = UDim2.new(0.21787709, 0, 0.0451866388, 0)
+ImageLabel.Size = UDim2.new(0.558659196, 0, 0.196463645, 0)
+ImageLabel.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+
+UICorner_2.CornerRadius = UDim.new(0, 99)
+UICorner_2.Parent = ImageLabel
+
+UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(4, 103, 87)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(127, 4, 188))}
+UIGradient_2.Rotation = 90
+UIGradient_2.Parent = Frame
+
+UICorner_3.Parent = Frame
+
+-- Scripts:
+
+local function DJFOSJY_fake_script() -- INFO.LocalScript 
+	local script = Instance.new('LocalScript', INFO)
+
+	
+end
+coroutine.wrap(DJFOSJY_fake_script)()
+local function BFSUJA_fake_script() -- Frame.Dragify 
+	local script = Instance.new('LocalScript', Frame)
+
+	local UIS = game:GetService("UserInputService")
+	function dragify(Frame)
+		dragToggle = nil
+		dragSpeed = 0.15
+		dragInput = nil
+		dragStart = nil
+		dragPos = nil
+		function updateInput(input)
+			Delta = input.Position - dragStart
+			Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+			game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.15), {Position = Position}):Play()
+		end
+		Frame.InputBegan:Connect(function(input)
+			if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+				dragToggle = true
+				dragStart = input.Position
+				startPos = Frame.Position
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragToggle = false
+					end
+				end)
+			end
+		end)
+		Frame.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+		game:GetService("UserInputService").InputChanged:Connect(function(input)
+			if input == dragInput and dragToggle then
+				updateInput(input)
+			end
+		end)
+	end
+	dragify(script.Parent)
+	
+end
+coroutine.wrap(BFSUJA_fake_script)()
